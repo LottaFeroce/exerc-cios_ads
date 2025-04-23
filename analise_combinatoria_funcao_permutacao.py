@@ -86,5 +86,30 @@ R=72+72=144
 E= multiplicar Ou= soma
 ==========================================
 Teorema de Bayes
+P(A|B)=P(B|A)P(A)/P(B)
 
+P=probabilidade
+A=estar contaminado
+B=Exame positivo
+
+teste=90% acurácia
+1000 pessoas = 1% tem h1n1
+
+1% de 1000 = 10
+10 tem h1n1
+990 não tem h1n1
+
+resultado do teste:
+    891 acertou
+990<
+    89 errou
+                > 99+9=108 probabilidade: P=9/108=83%
+    9 acertou
+10<
+    1 errou
+
+ P(B)=P=(B|A)*P(A)+P(B|Â)*P(Â)
+    0.90 * 0.01 + 0.10 * 0.99
+
+    P(A|B) = 0.90*0.01/0.9*0.01+0.10*0.99=83%
 """
