@@ -39,4 +39,13 @@ l=2
 e=3
 p^p,a,l,e= n!/p!*a!*l!*e! = 14!/3!*2!*2!3!=87178291200/144=605.404.800
 
+
+1)Quantas senhas com 4 algarismos diferentes podemos escrever com os algarismos 1,2,3,4,5,6,7,8 e 9?
+arranjo:
+An,p=N!/(n-p)! = 9!/(9-4)!=9!/5! = 9*8*7*6*-5!-/-5!- =A9,4=9*8*7*6=3024
+9*8*7*6
+n=p=N!  
+
+(0 ao 9 senha para cartão  10*10*10*10 10^4 = 10.000 -> isso com os números repetindo na senha )
+
 """
