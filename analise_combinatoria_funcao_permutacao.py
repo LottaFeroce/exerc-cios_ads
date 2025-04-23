@@ -46,6 +46,45 @@ An,p=N!/(n-p)! = 9!/(9-4)!=9!/5! = 9*8*7*6*-5!-/-5!- =A9,4=9*8*7*6=3024
 9*8*7*6
 n=p=N!  
 
-(0 ao 9 senha para cartão  10*10*10*10 10^4 = 10.000 -> isso com os números repetindo na senha )
+(0 ao 9 senha para cartão  10*10*10*10 = 10^4 = 10.000 -> isso com os números repetindo na senha)
+
+12)certa lanchonete possui 5 funcionarios para atender os clientes durante os diasda semana
+R=C(5,1)+C(5,2)+(5,3)+(5,4)+(5,5) = 5+10+10+5+1
+            5!/2!(5-2)!=5!/2!3!=5*-4*3!-/-2!3!-
+
+13)A secretáia de um médico precisa agendar quatro pacientes, a,  b, c, e d, para um mesmo dia.
+Os pacientes A e B não podem ser agendados no periodo da manhã e o paciente C não pode ser agendado no periodo da tarde.
+Sabendo que para esse dia estão disponiveis 3 horários no mesmo periodo da manhã e 4 no periodo da tarde, 
+o número de maneiras distintas de a secretária agendar esses pacientes é?
+R:D)144
+
+permutação simples? 3!*4!? Sim!(talvez?) 3!*4!=144
+
+M manhã| T tarde
+1°m c d c d         |ficticio m: c d, t: a b
+2°m d c     d c
+3°m     d c c d
+
+1°t a a b
+2°t b d d
+3°t d b a
+4°t 
+
+arranjo A=N!/(n-p)!
+A(3,2)*A(4,2)
+A(3,1)*A(4,3)
+
+A(3,2)=3!/(3-2)!=3!/1!=6
+A(4,2)=4!/2!=4*3*-2!-/-2!- = 12
+A(3,1)=3!/2!=3*-2!-/-2!- =3
+A(4,3)=4!/1!=24
+
+A(3,2)*A(4,2)=6*12=72
+A(3,1)*A(4,3)=3*24=72
+R=72+72=144
+
+E= multiplicar Ou= soma
+==========================================
+Teorema de Bayes
 
 """

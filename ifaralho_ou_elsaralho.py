@@ -69,3 +69,4 @@ if a + b == 0:
     print("Soma igual a zero. É tipo um casal que se cancela.")
 else:
     print("Ainda resta alguma coisa aí. Nem que seja o troco.")
+    
