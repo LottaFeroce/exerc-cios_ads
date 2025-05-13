@@ -34,6 +34,8 @@ NAND ex: 1*0 = X0 negado ->1 resultado
 NOR ex: 1+0 =  X0 negado -> 1 Res
 
 
+Para criar uma tabela verdade -> 2^N número de variaveis EXc... 2^n=2^3=8[000 ...->111(111->7 binario)]
+
 Tabela Verdade AND        Tabela Verdade NAND
 A|B|X|A¬B  x(saida)           A|B|X  x(saida)
 0|0|0|0                     0|0|1
@@ -74,5 +76,18 @@ ABCD
 1110 14
 1111 15
 
+Se A=0 então ¬A=1
+Se A=1 então ¬A=0
+
+¬A=A'
+¬A=¬
+¬B.¬C=(B.C)' [¬ individual é saida]
+
+B°
+ =D
+C°
+
 Y = XOR (A,B) = Aº+B =¬AB +A¬B??????
+
+x+(y+z)=(x+y)+z[Xou(YouZ)=(XouY)ouZ]
 """
