@@ -46,6 +46,10 @@ def produto_do_termo(termo1,fator_mult,tamanho):
 def progressao_geometrica_evil(termo1,fator_mult,resultado):
     tamanho = (math.log(resultado,10)/(math.log(termo1*fator_mult,10)))+1
     return tamanho
+
+def progressao_geometrica_evil_mais_mais(termo1,fator_mult,resultado):
+    tamanho = (math.log((resultado/termo1)/fator_mult)+1)
+    return tamanho
 """
 #                          numero/termo|razão|tamanho
 print(progressao_geometrica(8, -6, 10))
@@ -65,5 +69,13 @@ print(produto_do_termo(5,1,10))
 #print("Dia;",progressao_geometrica_evil(1,2,1024))
 
 #exercicio_3
-for i in range(1,15):
-    print(-3**(-i))
+#for i in range(1,15):
+#    print(-3**(-i))
+
+#exercicio_4
+print("Termo:",progressao_geometrica_evil(100,2,3200))
+tempo=0
+for i in range(1,7):
+    print(progressao_geometrica(100,2,i))
+    tempo+=20
+print("Tempo:",tempo)
