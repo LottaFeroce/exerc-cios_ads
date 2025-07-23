@@ -1,4 +1,5 @@
-import java.util.Scanner;
+   
+	   /*import java.util.Scanner;
 
 public class Main
 {
@@ -15,8 +16,7 @@ public class Main
 	    System.out.println("Digite who shall be the chosen one for the deep ones: ");
 	    var pessoa = inper.next();
 	    System.out.println(pessoa+" ,will be  graced by the abyss");
-	    
-	   /*
+	 
 	    String name = "Thiongos";
 	    var numero = 28830;
 	    var numero_maluco = 2990.39401;
@@ -36,6 +36,6 @@ public class Main
 		System.out.println("Número da tele-sena "+numero);
 		System.out.println("Número da ante-sena "+numero_maluco);
 		System.out.println("Sua altura é  "+altura); 
-		*/
+		
 	}
-}
+}*/
