@@ -1,0 +1,20 @@
+package lista1;
+import java.util.Scanner;
+public class turno { /*Crie um programa que receba M para matutino, V para vespertino e N para noturno, após isso printe bom dia/boa tarde/boa noite */
+    public static void main(String[] args) {
+        Scanner turnoestudo = new Scanner(System.in);
+        System.out.println("Informe qual turnoz dfj  bk |M| maturJSDBLF, |V| vesohf sd, |N| notsdhf:");
+        String turno = turnoestudo.next();
+        if (turno.equalsIgnoreCase("m")){
+            System.out.println("Você est Mata utino!!!!!!!!");
+        }else if (turno.equalsIgnoreCase("v")){
+            System.out.println("Estudas en el Vespertine");
+        }else if (turno.equalsIgnoreCase("N")){
+            System.out.println("Not urno ahshahhaa");
+        }else{
+            System.out.println("BUrrrrooooooO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
+        turnoestudo.close();
+    }
+    
+}
