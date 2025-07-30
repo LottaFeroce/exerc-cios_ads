@@ -12,4 +12,6 @@ Mascara default maximiza a rede e zera os hosts EX: R  R  R  H  ||R R H H|| R  H
 
 quantidades max de IPs em uma maquina, do 1 ao 254.
 
+CLASSES A,B,C,D |A 0-127|B 128-191|C 192-223|D 224-239|
+
 """
