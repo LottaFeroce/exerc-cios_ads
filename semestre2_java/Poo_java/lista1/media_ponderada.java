@@ -15,11 +15,11 @@ foi aprovado ou reprovado. A nota para aprovação deve ser igual ou superior a 
                 double notapeso1 = nota1 * 1;
                 double notapeso2 = nota2 * 1;
                 double notapeso3 = nota3 * 2;
-                double soma_pontos =  (notapeso1 + notapeso2 + notapeso3);
+               // double soma_pontos =  (notapeso1 + notapeso2 + notapeso3);
                 double media = (notapeso1 + notapeso2 + notapeso3) / peso;
             
                 System.out.printf("A média do aluno é: %.2f%nCom as notas: %.2f, %.2f, %.2f", media,notapeso1,notapeso2,notapeso3);
-        }else if (soma_pontos > 60){
+      //  }else if (soma_pontos > 60){
             
         }else {
                 System.out.println("Uma ou ambas as notas são inválidas. Encerrando o programa.");

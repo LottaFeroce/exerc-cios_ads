@@ -1,4 +1,4 @@
-package lista1;
+
 import java.util.Scanner;
 public class diferenc_num {/*Crie um programa que receba 2 números mostre o maior[informe a diferenca entre eles e se forem iguais exc 12 & 13] */
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package intro;
+
 public class aplicasus {
     public static void main(String[] args) {
         
