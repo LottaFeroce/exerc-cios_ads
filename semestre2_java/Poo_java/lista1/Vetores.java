@@ -9,8 +9,8 @@ public class Vetores {
         for (item = 0; item < numero; item ++){
             System.out.printf("Informe %2dºo. Valor de %d ", (item + 1),numero);
             vetor[item] = entrada.nextInt();
-         }entrada.close();
-       
+            }
+        entrada.close();
     }
 }
 /*     ===================Segunda versão funcional====================
