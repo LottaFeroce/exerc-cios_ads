@@ -2,7 +2,17 @@ package lista1;
 import java.util.Scanner;
 public class lanchonete_em {
     /*
-    Programa que calcula o valor de um pedido baseado no código e quantidade informados.
+Escrever um programa que leia o código do produto escolhido do cardápio de uma lanchonete e
+a quantidade. O programa deve calcular o valor a ser pago por aquele lanche. Considere que a
+cada execução somente será calculado um pedido. O cardápio da lanchonete segue o padrão
+abaixo:
+Especificação Código Preço
+Hot Dog 100 12.00
+X-Salada 102 18.50
+X-BACON 103 25.50
+X-Burguer 104 17.00
+Suco de Laranja 105 9.50
+Refrigerante 106 6.00
     */
     public static void main(String[] args) {
         Scanner lanch_net = new Scanner(System.in);
