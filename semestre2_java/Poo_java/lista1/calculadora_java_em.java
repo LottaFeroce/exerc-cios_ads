@@ -7,12 +7,7 @@ public class calculadora_java_em {
     */
     public static void main(String[] args) {
         Scanner calculad = new Scanner(System.in);
-        System.out.println("Qual operação deseja realizar?");
-        System.out.println("|1| Para Adição");
-        System.out.println("|2| Para Subtração");
-        System.out.println("|3| Para Multiplicação");
-        System.out.println("|4| Para Divisão");
-        System.out.println("|5| Para Finalizar");
+        System.out.println("Qual operação deseja realizar?\n|1| Para Adição\n|2| Para Subtração\n|3| Para Multiplicação\n|4| Para Divisão\n|5| Para Finalizar");
         int operador = calculad.nextInt();
         if (operador >= 1 && operador <= 4) {
             System.out.print("Digite o primeiro valor: ");

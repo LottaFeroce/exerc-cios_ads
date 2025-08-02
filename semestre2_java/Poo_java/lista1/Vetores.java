@@ -3,16 +3,17 @@ import java.util.Scanner;
 public class Vetores {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-            int numero = 5;
-            int vetor[] = new int[numero];
-            int item;
-        for (item = 0; item < numero; item ++){
-            System.out.printf("Informe %2dºo. Valor de %d ", (item + 1),numero);
+        int numero = 5;
+        int vetor[] = new int[numero];
+        int item;
+        for (item = 0; item < numero; item++) {
+            System.out.printf("Informe %2dºo. Valor: ", (item + 1));
             vetor[item] = entrada.nextInt();
-            }
+        }
         entrada.close();
     }
 }
+
 /*     ===================Segunda versão funcional====================
         Scanner vetior = new Scanner(System.in);
 
