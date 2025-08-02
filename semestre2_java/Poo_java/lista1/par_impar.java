@@ -9,9 +9,7 @@ public class par_impar {
             System.out.println("O número é PAr");
         }else{
             System.out.println("O número é impar");
-        }
-        
+        }     
         parimpar.close();
-    }
-    
+    }  
 }

@@ -7,7 +7,6 @@ public class nadadores_em {
     - Juvenil: 13 a 17 anos
     - Sênior: 18 anos ou mais
     */
-
     public static void main(String[] args) {
         Scanner idade_nadador = new Scanner(System.in);
         System.out.print("Informe a idade do nadador: ");
