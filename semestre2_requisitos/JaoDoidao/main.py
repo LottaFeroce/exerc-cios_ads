@@ -29,7 +29,7 @@ def registrar_venda():
 
         itens = {}
         while True:
-            codigo = input("Código de Barras do Produto (ou 'fim' para encerrar): ")
+            codigo = input("\nCódigo de Barras do Produto (ou 'fim' para encerrar): ")
             if codigo.lower() == 'fim':
                 break
             quantidade = float(input("Quantidade: "))
@@ -43,9 +43,11 @@ def registrar_venda():
             if not produto or produto['estoque_atual'] < quantidade:
                 print(f"Produto '{codigo}' não encontrado ou estoque insuficiente.")
                 return
-            subtotal = float(produto['preco_venda']) * quantidade
+            subtotal = round(float(produto['preco_venda']) * quantidade, 2)
             total += subtotal
+            quantidade = round(quantidade, 2)
             detalhes.append((produto, quantidade, subtotal))
+
 
         cursor.execute("""
             INSERT INTO vendas (cliente_id, vendedor_id, valor_total, forma_pagamento)
@@ -69,7 +71,7 @@ def registrar_venda():
             VALUES (%s, %s, %s, %s)
         """, (venda_id, vendedor_id, valor_comissao, datetime.now().date()))
         conexao.commit()
-        print(f"\nVenda registrada com sucesso! Total: R${total:.2f} | Comissão: R${valor_comissao:.2f}")
+        print(f"\nVenda registrada com sucesso! Total: R$:{total:.2f} | Comissão: R$:{valor_comissao:.2f}")
     except Exception as e:
         print("Erro ao registrar venda:", e)
 
@@ -83,7 +85,7 @@ def relatorio_vendas():
     vendas = cursor.fetchall()
     for venda in vendas:
         print(f"\nVenda #{venda['id']} - {venda['data_venda']} - Cliente: {venda['cliente']}")
-        print(f"Total: R${venda['valor_total']:.2f} | Forma de pagamento: {venda['forma_pagamento']}")
+        print(f"Total: R$:{venda['valor_total']:.2f} | Forma de pagamento: {venda['forma_pagamento']}")
         cursor.execute("""
             SELECT p.descricao, i.quantidade, i.preco_unitario
             FROM itens_venda i
@@ -92,7 +94,10 @@ def relatorio_vendas():
         """, (venda['id'],))
         itens = cursor.fetchall()
         for item in itens:
-            print(f"  - {item['quantidade']}x {item['descricao']} (R${item['preco_unitario']:.2f})")
+            qtd_raw = item['quantidade']
+            qtd = int(qtd_raw) if qtd_raw == int(qtd_raw) else round(float(qtd_raw), 2)
+            print(f"  - {qtd}x {item['descricao']} (R$:{item['preco_unitario']:.2f})")
+
 
 def relatorio_por_funcionario():
     print("\nRELATÓRIO DE VENDAS POR FUNCIONÁRIO")
@@ -111,7 +116,7 @@ def relatorio_por_funcionario():
 
     for venda in vendas:
         print(f"\nVenda #{venda['id']} - {venda['data_venda']} - Vendedor: {venda['vendedor']}")
-        print(f"Cliente: {venda['cliente']} | Total: R${venda['valor_total']:.2f} | Forma: {venda['forma_pagamento']}")
+        print(f"Cliente: {venda['cliente']} | Total: R$:{venda['valor_total']:.2f} | Forma: {venda['forma_pagamento']}")
         cursor.execute("""
             SELECT p.descricao, i.quantidade, i.preco_unitario
             FROM itens_venda i
@@ -120,7 +125,10 @@ def relatorio_por_funcionario():
         """, (venda['id'],))
         itens = cursor.fetchall()
         for item in itens:
-            print(f"  - {item['quantidade']}x {item['descricao']} (R${item['preco_unitario']:.2f})")
+            qtd_raw = item['quantidade']
+            qtd = int(qtd_raw) if qtd_raw == int(qtd_raw) else round(float(qtd_raw), 2)
+            print(f"  - {qtd}x {item['descricao']} (R$:{item['preco_unitario']:.2f})")
+
 
 def relatorio_cadastros():
     print("\nRELATÓRIO DE PESSOAS CADASTRADAS")
@@ -141,7 +149,9 @@ def consultar_estoque():
     cursor.execute("SELECT descricao, estoque_atual, preco_venda FROM produtos WHERE ativo = 1")
     produtos = cursor.fetchall()
     for p in produtos:
-        print(f"{p['descricao']}: {p['estoque_atual']} unidades | R${p['preco_venda']:.2f}")
+        estoque = round(p['estoque_atual'], 2)
+        preco = round(p['preco_venda'], 2)
+        print(f"{p['descricao']}: {estoque} unidades | R$:{preco:.2f}")
 
 def cadastrar_cliente():
     try:
@@ -156,7 +166,7 @@ def cadastrar_cliente():
             VALUES (%s, %s, %s, %s, %s, %s)
         """, (nome, tipo, cpf_cnpj, telefone, email, endereco))
         conexao.commit()
-        print("Cliente cadastrado com sucesso!")
+        print("\nCliente cadastrado com sucesso!")
     except Exception as e:
         print("Erro ao cadastrar cliente:", e)
 
@@ -173,14 +183,14 @@ def cadastrar_vendedor():
             VALUES (%s, %s, %s, %s, %s)
         """, (nome, cpf, telefone, email, data_admissao))
         conexao.commit()
-        print("Vendedor cadastrado com sucesso!")
+        print("\nVendedor cadastrado com sucesso!")
     except Exception as e:
         print("Erro ao cadastrar vendedor:", e)
 
 def cadastrar_produto():
     try:
         codigo_barras = input("Código de Barras: ")
-        descricao = input("Descrição: ")
+        descricao = input("Descrição/Nome: ")
         categoria = input("Categoria (Elétrico, Hidráulico, Ferragens, Material Básico, Outros): ")
         unidade_medida = input("Unidade de Medida (UN, KG, M, M², CX, SC): ")
         preco_custo = float(input("Preço de Custo: "))
@@ -195,13 +205,13 @@ def cadastrar_produto():
         """, (codigo_barras, descricao, categoria, unidade_medida,
               preco_custo, preco_venda, estoque_atual, estoque_minimo, estoque_maximo))
         conexao.commit()
-        print("Produto cadastrado com sucesso!")
+        print("\nProduto cadastrado com sucesso!")
     except Exception as e:
         print("Erro ao cadastrar produto:", e)
 
 def menu():
     while True:
-        print("\nMENU CRUD — escolha uma opção")
+        print("\nMENU Construção Fácil — escolha uma opção")
         print("1. Registrar nova venda")
         print("2. Consultar estoque")
         print("3. Relatório de vendas")
