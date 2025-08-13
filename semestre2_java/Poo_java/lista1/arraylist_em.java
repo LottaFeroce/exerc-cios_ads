@@ -37,7 +37,7 @@ public class arraylist_em {
             notas.add(8.98);
             notas.add(8.99);
                 int tamanho_int = notas.size();
-                double notaz = notas.get(0);
+               //double notaz = notas.get(0);
             System.out.println("Tamanho vetorado: "+tamanho_int);
     }
     

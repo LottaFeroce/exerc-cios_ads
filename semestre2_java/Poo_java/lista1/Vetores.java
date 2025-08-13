@@ -1,4 +1,4 @@
-package lista1;
+/* package lista1;
 import java.util.Scanner;
 public class Vetores {
     public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class Vetores {
     }
 }
 
-/*     ===================Segunda versão funcional====================
+    ===================Segunda versão funcional====================
         Scanner vetior = new Scanner(System.in);
 
         System.out.print("Manda umas frutas aí (separadas por espaço): ");
