@@ -1,7 +1,7 @@
 package lista2;
 import java.util.Scanner;
 public class dez_numeros_maior_em {
-    /* Escreva um programa que leia 10 números e escreva o menor valor lido e o maior valor lido. */
+    /* Escreva um programa que leia 10 números e escreva o menor valor lido e o maior valor lido. exerc: [9]*/
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int menor, maior;
