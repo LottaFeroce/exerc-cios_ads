@@ -2,7 +2,7 @@ package lista1;
 public class loop_em_java {
     public static void main(String[] args) {
         int item = 0;
-        while (item < 110000000) {
+        while (item < 1100000000) {
             System.out.print(item);
             item++;
             

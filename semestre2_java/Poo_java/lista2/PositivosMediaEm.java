@@ -1,6 +1,5 @@
 package lista2;
 import java.util.Scanner;
-
 public class PositivosMediaEm {
     /* Escreva um programa que leia 10 inteiros positivos, ignorando não positivos, e imprima sua média. */
     public static void main(String[] args) {
