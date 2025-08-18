@@ -5,13 +5,13 @@ public class calcula_par_impar_em {
 • a soma dos números pares desse intervalo de números, incluindo os números digitados;
 • a multiplicação dos números ímpares desse intervalo, incluindo os digitados; */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner Desolation_row = new Scanner(System.in);
 
         System.out.print("Digite o primeiro número: ");
-        int inicio = scanner.nextInt();
+        int inicio = Desolation_row.nextInt();
 
         System.out.print("Digite o segundo número: ");
-        int fim = scanner.nextInt();
+        int fim = Desolation_row.nextInt();
 
         if (inicio > fim) {
             int temporario = inicio;
@@ -40,7 +40,7 @@ public class calcula_par_impar_em {
             System.out.println("Não havia números ímpares no intervalo.");
         }
 
-        scanner.close();
+        Desolation_row.close();
     }
 }
 
