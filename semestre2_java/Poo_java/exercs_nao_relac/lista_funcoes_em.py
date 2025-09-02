@@ -119,7 +119,7 @@ sistema é calcularTempo(). Considere o valor mínimo de R$9,00
 por hora e R$ 1,50 por hora adicional. O principal argumento da
 função é o tempo utilizado em minutos, a função deve retornar o
 valor total. Caso o usuário fique no estacionamento por menos de
-15 minutos, o tempo utilizado não será cobrado"""
+15 minutos, o tempo utilizado não será cobrado
 def extorsao_shopping(tempo_minutos):
     valor_minimo = 9.00  
     hora_adicional = 1.50  
@@ -144,4 +144,74 @@ def extorsao_shopping(tempo_minutos):
 tempo = float(input("Digite o tempo de permanência no estacionamento (em minutos): "))
 valor_total = extorsao_shopping(tempo)
 print(f"Valor total a pagar: R$ {valor_total:.2f}")
+"""
+'''10 – Adicione na função calcularTempo() do sistema para
+estacionamento o valor dos impostos pago pelo cliente. Considere
+o PIS: 0,33% , COFINS: 0,20% e ICMS: 17% no valor e imprima o
+recibo do cliente de acordo com a saída abaixo:
 
+def calcularTempo():
+    print("=== SISTEMA DE ESTACIONAMENTO ===")
+    
+    entrada = int(input("Digite a hora de entrada (0-23): "))
+    saida = int(input("Digite a hora de saída (0-23): "))
+    
+    preco_hora = 5.00
+
+
+    if saida < entrada:
+        tempo = (24 - entrada) + saida
+    else:
+        tempo = saida - entrada
+
+    tempo = max(1, tempo) 
+
+    valor_base = tempo * preco_hora
+    pis = valor_base * 0.0033
+    cofins = valor_base * 0.0020
+    icms = valor_base * 0.17
+
+    total = valor_base + pis + cofins + icms
+    print(f"\n=== RECIBO DE PAGAMENTO ===\nTempo estacionado: {tempo} hora(s)\nValor por hora: R$ {preco_hora:.2f}\nValor base: R$ {valor_base:.2f}\nPIS (0,33%): R$ {pis:.2f}\nCOFINS (0,20%): R$ {cofins:.2f}\nICMS (17%): R$ {icms:.2f}\nTotal a pagar: R$ {total:.2f}\n===============================")
+calcularTempo()'''
+
+"""11 – Uma pessoa está interessada em comprar um carro e deseja fazer um
+financiamento. Ela tem uma quantia X para dar de entrada, uma taxa de juros é
+definida pelo banco e a pessoa pode escolher o número de parcelas que deseja
+financiar.
+Crie uma função que simule um financiamento, levando em consideração o regime de
+juros compostos. O programa deve solicitar ao usuário o valor do veiculo, o valor da
+entrada, a taxa de juros e a quantidade de parcelas. Além disso, o programa deve
+exibir o valor total pago, a quantia dos juros pagos e o valor de cada parcela. O
+programa deve apresentar as informações de forma clara e objetiva, facilitando a
+compreensão por parte do usuário."""
+def simularFinanciamento():
+    print("=== SIMULADOR DE FINANCIAMENTO DE VEÍCULO ===")
+
+    # Entradas do usuário
+    valor_veiculo = float(input("Informe o valor do veículo (R$): "))
+    entrada = float(input("Informe o valor da entrada (R$): "))
+    taxa_juros = float(input("Informe a taxa de juros mensal (%): "))
+    parcelas = int(input("Informe a quantidade de parcelas: "))
+
+    # Cálculos iniciais
+    valor_financiado = valor_veiculo - entrada
+    taxa_decimal = taxa_juros / 100
+
+    # Cálculo do valor total a ser pago usando juros compostos
+    montante = valor_financiado * (1 + taxa_decimal) ** parcelas
+
+    valor_parcela = montante / parcelas
+    juros_pagos = montante - valor_financiado
+
+    # Saída formatada
+    print("\n=== DETALHES DO FINANCIAMENTO ===")
+    print(f"Valor do veículo: R$ {valor_veiculo:,.2f}")
+    print(f"Entrada: R$ {entrada:,.2f}")
+    print(f"Valor financiado: R$ {valor_financiado:,.2f}")
+    print(f"Taxa de juros mensal: {taxa_juros:.2f}%")
+    print(f"Número de parcelas: {parcelas}")
+    print(f"Valor de cada parcela: R$ {valor_parcela:,.2f}")
+    print(f"Total pago ao final: R$ {montante:,.2f}")
+    print(f"Total de juros pagos: R$ {juros_pagos:,.2f}")
+    print("==========================================")
