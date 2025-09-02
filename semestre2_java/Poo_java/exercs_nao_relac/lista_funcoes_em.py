@@ -184,34 +184,26 @@ juros compostos. O programa deve solicitar ao usuário o valor do veiculo, o val
 entrada, a taxa de juros e a quantidade de parcelas. Além disso, o programa deve
 exibir o valor total pago, a quantia dos juros pagos e o valor de cada parcela. O
 programa deve apresentar as informações de forma clara e objetiva, facilitando a
-compreensão por parte do usuário."""
+compreensão por parte do usuário.
 def simularFinanciamento():
     print("=== SIMULADOR DE FINANCIAMENTO DE VEÍCULO ===")
 
-    # Entradas do usuário
+  
     valor_veiculo = float(input("Informe o valor do veículo (R$): "))
     entrada = float(input("Informe o valor da entrada (R$): "))
     taxa_juros = float(input("Informe a taxa de juros mensal (%): "))
     parcelas = int(input("Informe a quantidade de parcelas: "))
 
-    # Cálculos iniciais
+   
     valor_financiado = valor_veiculo - entrada
     taxa_decimal = taxa_juros / 100
 
-    # Cálculo do valor total a ser pago usando juros compostos
+    
     montante = valor_financiado * (1 + taxa_decimal) ** parcelas
 
     valor_parcela = montante / parcelas
     juros_pagos = montante - valor_financiado
 
-    # Saída formatada
-    print("\n=== DETALHES DO FINANCIAMENTO ===")
-    print(f"Valor do veículo: R$ {valor_veiculo:,.2f}")
-    print(f"Entrada: R$ {entrada:,.2f}")
-    print(f"Valor financiado: R$ {valor_financiado:,.2f}")
-    print(f"Taxa de juros mensal: {taxa_juros:.2f}%")
-    print(f"Número de parcelas: {parcelas}")
-    print(f"Valor de cada parcela: R$ {valor_parcela:,.2f}")
-    print(f"Total pago ao final: R$ {montante:,.2f}")
-    print(f"Total de juros pagos: R$ {juros_pagos:,.2f}")
-    print("==========================================")
+  
+    print(f"\n=== DETALHES DO FINANCIAMENTO ===\nValor do veículo: R$ {valor_veiculo:,.2f}\nEntrada: R$ {entrada:,.2f}\nValor financiado: R$ {valor_financiado:,.2f}\nTaxa de juros mensal: {taxa_juros:.2f}%\nNúmero de parcelas: {parcelas}\nValor de cada parcela: R$ {valor_parcela:,.2f}\nTotal pago ao final: R$ {montante:,.2f}\nTotal de juros pagos: R$ {juros_pagos:,.2f}\n==========================================")
+"""
