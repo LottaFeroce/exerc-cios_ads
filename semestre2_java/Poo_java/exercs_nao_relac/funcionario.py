@@ -20,6 +20,7 @@ class Gerente(funcionario):
         confirm = input ("Digite o token: ")
         if confirm:
             print(f"Gerente {self.nome} logado com sucesso, no setor {self.setor}")
+            FileExistsError
 
 luan = Gerente("Luan Victor","Daegon@gmail.com","1211","Vendas")
 
@@ -28,3 +29,5 @@ colab = funcionario("Eliandrick","lalilulilou@gmail.com","00123")
 colab = funcionario("Felizardo","ungalossado@yahoo.com","0451")
 
 colab.logon()
+
+luan.logon()
