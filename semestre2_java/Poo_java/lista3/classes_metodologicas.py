@@ -59,7 +59,7 @@ class Aluno:
         else:
             return f"REPROVADO (média = {media:.2f})"
 
-aluno1 = Aluno("Carlos", "RA12345", [8.0, 7.0, 9.0, 6.0])
+aluno1 = Aluno("Karlmarcos", "RA12345", [8.0, 7.0, 9.0, 6.0])
 
 print(aluno1.nome)
 print(aluno1.calcular_media())
@@ -88,7 +88,7 @@ class ContaCorrente:
     def imprimir_saldo(self):
         return self.saldo
 
-conta1 = ContaCorrente("Beatriz", "123.456.789-00", "0001", 500)
+conta1 = ContaCorrente("Bitchko", "123.456.789-00", "0001", 500)
 
 conta1.depositar(250)
 print(conta1.imprimir_saldo())
@@ -115,7 +115,7 @@ class Funcionario:
             return True
         return False
 
-func1 = Funcionario("João", "Silva", 160, 25)
+func1 = Funcionario("Yuruko", "Amagi", 160, 25)
 print(func1.nome_completo())
 print(func1.calcular_salario())
 func1.incrementar_horas(8)
@@ -166,7 +166,7 @@ class Agenda:
 agenda1 = Agenda(28, 2, 2024)
 
 print("Data válida?", agenda1.validar_data())
-agenda1.anotar_tarefa("Estudar POO com a BB-chan 💜")
+agenda1.anotar_tarefa("Estudar POO")
 print("Anotação:", agenda1.mostrar_anotacao())
 
 
@@ -213,7 +213,7 @@ class AlunoAcademia:
             return self.mensalidade * 0.5
         return self.mensalidade
 
-a1 = AlunoAcademia("Lucas", 17, 65, 1.75)
+a1 = AlunoAcademia("Bakako", 17, 65, 1.75)
 
 print("IMC:", a1.calcular_imc())
 print("Mensalidade:", a1.obter_valor_mensalidade())

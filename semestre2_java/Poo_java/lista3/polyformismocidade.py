@@ -13,7 +13,7 @@ class Acao(Filme):
         self.explosoes = explosoes
 
     def explodir(self):
-        print(f"{self.nome} causou {self.explosoes} explosões")
+        print(f"{self.nome} teve {self.explosoes} explosões")
 
 
 class Drama(Filme):
@@ -33,7 +33,7 @@ class Suspense(Filme):
     def assustar(self):
         print(f"{self.nome} está com nível de tensão {self.nivel_tensao}/10\n")
 
-filme1 = Acao("Caesar King", 130, 15)
+filme1 = Acao("Caesar King: Rainha de Calydon", 130, 15)
 filme2 = Drama("Marley e Eu", 120, 20)
 filme3 = Suspense("O Chamado", 110, 11)
 
@@ -114,7 +114,7 @@ class PessoaJuridica(PessoaBase):
     def emitir_nota(self):
         print(f"Empresa {self.nome} emitiu uma nota fiscal\n")
 
-pf = PessoaFisica("João", "991231-4331", "joao@email.com", "Rua centralizada, 10", "123.456.789-00")
+pf = PessoaFisica("Yuruko", "991231-4331", "yuru@email.com", "Rua oppaidesu, 10", "123.456.789-00")
 pj = PessoaJuridica("TechCorp", "94002-8922", "contato@techcorp.com", "Av. Central, 1000", "12.345.678/0001-99")
 
 pf.negociar()
@@ -229,7 +229,7 @@ class Gerente(FuncionarioBase):
     def autenticar(self):
         print(f"Gerente {self.nome} autenticado com sucesso\n")
 
-vendedor1 = Vendedor("Carlos", "V123", 2000, 500)
+vendedor1 = Vendedor("Yariko", "V123", 2000, 500)
 gerente1 = Gerente("Marina", "G001", 8000, "1234")
 
 vendedor1.bater_ponto()
