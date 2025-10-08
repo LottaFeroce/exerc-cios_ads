@@ -86,7 +86,7 @@ aluno1.estudar()
 
 prof1.lecionar()
 
-class PessoaBase:
+class Pessoa_base:
     def __init__(self, nome, telefone, email, endereco):
         self.nome = nome
         self.telefone = telefone
@@ -97,7 +97,7 @@ class PessoaBase:
         print(f"{self.nome} está negociando um contrato")
 
 
-class PessoaFisica(PessoaBase):
+class Pessoa_fisica(Pessoa_base):
     def __init__(self, nome, telefone, email, endereco, cpf):
         super().__init__(nome, telefone, email, endereco)
         self.cpf = cpf
@@ -106,7 +106,7 @@ class PessoaFisica(PessoaBase):
         print(f"Pessoa Física {self.nome} assinou o contrato")
 
 
-class PessoaJuridica(PessoaBase):
+class Pessoa_juridica(Pessoa_base):
     def __init__(self, nome, telefone, email, endereco, cnpj):
         super().__init__(nome, telefone, email, endereco)
         self.cnpj = cnpj
@@ -114,8 +114,8 @@ class PessoaJuridica(PessoaBase):
     def emitir_nota(self):
         print(f"Empresa {self.nome} emitiu uma nota fiscal\n")
 
-pf = PessoaFisica("Yuruko", "991231-4331", "yuru@email.com", "Rua oppaidesu, 10", "123.456.789-00")
-pj = PessoaJuridica("TechCorp", "94002-8922", "contato@techcorp.com", "Av. Central, 1000", "12.345.678/0001-99")
+pf = Pessoa_fisica("Yuruko", "991231-4331", "yuru@email.com", "Rua oppaidesu, 10", "123.456.789-00")
+pj = Pessoa_juridica("TechCorp", "94002-8922", "contato@techcorp.com", "Av. Central, 1000", "12.345.678/0001-99")
 
 pf.negociar()
 pf.assinar_contrato()
@@ -135,7 +135,7 @@ class Ingresso:
         print(f"Setor: {self.setor}")
 
 
-class IngressoVIP(Ingresso):
+class Ingresso_VIP(Ingresso):
     def __init__(self, preco, setor, camarote, open_bar, open_food, estacionamento):
         super().__init__(preco, setor)
         self.camarote = camarote
@@ -156,7 +156,7 @@ class IngressoVIP(Ingresso):
             print("Acesso ao camarote negado")
 
 ingresso1 = Ingresso(150, "Pista")
-vip1 = IngressoVIP(500, "Camarote", True, True, True, True)
+vip1 = Ingresso_VIP(500, "Camarote", True, True, True, True)
 
 ingresso1.mostrar_setor()
 vip1.mostrar_setor()
@@ -175,7 +175,7 @@ class Passagem:
         self.assento = novo_assento
 
 
-class PassagemAviao(Passagem):
+class Passagem_aviao(Passagem):
     def __init__(self, preco, assento, portao_embarque, checkin):
         super().__init__(preco, assento)
         self.portao_embarque = portao_embarque
@@ -185,7 +185,7 @@ class PassagemAviao(Passagem):
         print("O avião está decolando\n")
 
 
-class PassagemBus(Passagem):
+class Passagem_onibus(Passagem):
     def __init__(self, preco, assento, placa, leito):
         super().__init__(preco, assento)
         self.placa = placa
@@ -194,13 +194,13 @@ class PassagemBus(Passagem):
     def abastecer(self):
         print(f"O ônibus de placa {self.placa} está sendo abastecido")
 
-bus = PassagemBus(120, "Poltrona 10", "ABC-1234", True)
-aviao = PassagemAviao(800, "12A", "Portão 5", True)
+bus = Passagem_onibus(120, "Poltrona 10", "ABC-1234", True)
+aviao = Passagem_aviao(800, "12A", "Portão 5", True)
 
 bus.abastecer()
 aviao.decolar()
 
-class FuncionarioBase:
+class Funcionario_base:
     def __init__(self, nome, matricula, salario):
         self.nome = nome
         self.matricula = matricula
@@ -212,7 +212,7 @@ class FuncionarioBase:
         print(f"{self.nome} bateu ponto hoje")
 
 
-class Vendedor(FuncionarioBase):
+class Vendedor(Funcionario_base):
     def __init__(self, nome, matricula, salario, comissao):
         super().__init__(nome, matricula, salario)
         self.comissao = comissao
@@ -221,7 +221,7 @@ class Vendedor(FuncionarioBase):
         print(f"{self.nome} bateu a meta e recebeu comissão de R${self.comissao:.2f}")
 
 
-class Gerente(FuncionarioBase):
+class Gerente(Funcionario_base):
     def __init__(self, nome, matricula, salario, senha):
         super().__init__(nome, matricula, salario)
         self.senha = senha
@@ -249,7 +249,7 @@ class Brinquedo:
         print(f"Brincando com {self.nome}")
 
 
-class BuzzLightyear(Brinquedo):
+class Buzz_lightyear(Brinquedo):
     def brincar(self):
         print(f"Ao infinito e além({self.nome})")
 
@@ -274,7 +274,7 @@ class Slinky(Brinquedo):
         print(f"{self.nome} está se esticando e voltando\n")
 
 brinquedos = [
-    BuzzLightyear("Buzz Lightyear", "Branco", "Médio", 120),
+    Buzz_lightyear("Buzz Lightyear", "Branco", "Médio", 120),
     Woody("Woody", "Marrom", "Médio", 100),
     Rex("Rex", "Verde", "Grande", 80),
     Jessie("Jessie", "Vermelha", "Pequena", 90),
@@ -345,7 +345,7 @@ class Compra:
         return self.valor_total
 
 
-class CompraAvista(Compra):
+class Compra_avista(Compra):
     def __init__(self, numero, produto, valor, desconto):
         super().__init__(numero, produto, valor)
         self.desconto = desconto
@@ -356,7 +356,7 @@ class CompraAvista(Compra):
         return self.valor_total
 
 
-class CompraParcelada(Compra):
+class Compra_parcelada(Compra):
     def __init__(self, numero, produto, valor, parcelas):
         super().__init__(numero, produto, valor)
         self.parcelas = parcelas
@@ -368,10 +368,10 @@ class CompraParcelada(Compra):
 compra1 = Compra("001", "Notebook", 3000)
 print("Valor total compra comum:", compra1.calcular_valor_total())
 
-compra2 = CompraAvista("002", "Celular", 2000, 200)
+compra2 = Compra_avista("002", "Celular", 2000, 200)
 print("Valor total compra à vista (com desconto):", compra2.calcular_valor_total())
 
-compra3 = CompraParcelada("003", "TV", 2500, 5)
+compra3 = Compra_parcelada("003", "TV", 2500, 5)
 compra3.simular_numero_de_parcelas()
 
 class Transporte:
@@ -401,13 +401,13 @@ class Aereo(Transporte):
         self.asas = asas
 
 
-class AviaoMonomotor(Aereo):
+class Aviao_monomotor(Aereo):
     def __init__(self, tipo, capacidade, asas, autonomia):
         super().__init__(tipo, capacidade, asas)
         self.autonomia = autonomia
 
 
-class AviaoComercial(Aereo):
+class Aviao_comercial(Aereo):
     def __init__(self, tipo, capacidade, asas, companhia):
         super().__init__(tipo, capacidade, asas)
         self.companhia = companhia
@@ -431,7 +431,7 @@ class Navio(Aquatico):
         self.tripulacao = tripulacao
 
 carro = Automovel("Carro", 5, 4, "Sedan")
-aviao_com = AviaoComercial("Avião", 180, 2, "LATAM")
+aviao_com = Aviao_comercial("Avião", 180, 2, "LATAM")
 lancha = Lancha("Lancha", 8, 2, 80)
 
 carro.mover()

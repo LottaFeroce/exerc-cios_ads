@@ -66,7 +66,7 @@ print(aluno1.calcular_media())
 print(aluno1.mostrar_situacao())
 
 
-class ContaCorrente:
+class Conta_corrente:
     def __init__(self, nome, cpf, numero, saldo=0):
         self.nome = nome
         self.cpf = cpf
@@ -88,7 +88,7 @@ class ContaCorrente:
     def imprimir_saldo(self):
         return self.saldo
 
-conta1 = ContaCorrente("Bitchko", "123.456.789-00", "0001", 500)
+conta1 = Conta_corrente("Bitchko", "123.456.789-00", "0001", 500)
 
 conta1.depositar(250)
 print(conta1.imprimir_saldo())
@@ -195,7 +195,7 @@ print("Maior lado:", tri1.get_maior_lado())
 print("Área:", tri1.calcular_area())
 
 
-class AlunoAcademia:
+class Aluno_academia:
     def __init__(self, nome, idade, peso, altura, mensalidade=120):
         self.nome = nome
         self.idade = idade
@@ -213,7 +213,7 @@ class AlunoAcademia:
             return self.mensalidade * 0.5
         return self.mensalidade
 
-a1 = AlunoAcademia("Bakako", 17, 65, 1.75)
+a1 = Aluno_academia("Bakako", 17, 65, 1.75)
 
 print("IMC:", a1.calcular_imc())
 print("Mensalidade:", a1.obter_valor_mensalidade())
@@ -261,7 +261,7 @@ print("Novo nível:", carro1.verificar_nivel())
 print("IPVA:", carro1.calcular_imposto())
 
 
-class NotaFiscal:
+class Nota_fiscal:
     def __init__(self, numero, tipo, serie, cnpj, razao_social, data,
                  icms, frete, ipi, valor_produto):
         self.numero = numero
