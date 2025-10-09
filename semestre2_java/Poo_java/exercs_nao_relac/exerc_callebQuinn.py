@@ -18,7 +18,7 @@ class Aluno:
         else:
             return f"REPROVADO (média = {media:.2f})"
 
-aluno1 = Aluno("Karlmarcos", "RA12345", [8.0, 7.0, 9.0, 6.0])
+aluno1 = Aluno("Karlmarcos", "Matricula", [8.0, 7.0, 9.0, 6.0])
 
 print(aluno1.nome)
 print(aluno1.calcular_media())
