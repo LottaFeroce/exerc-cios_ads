@@ -66,8 +66,8 @@ class Servico {
         return preco;
     }
 
-    public void Atualizar_descricao(String novaDescricao) {
-        this.descricao = novaDescricao;
+    public void Atualizar_descricao(String Nova_descricao) {
+        this.descricao = Nova_descricao;
     }
 
     public void Listar_servicos() {
