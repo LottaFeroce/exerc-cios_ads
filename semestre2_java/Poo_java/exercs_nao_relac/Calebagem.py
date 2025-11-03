@@ -5,11 +5,11 @@ class Pessoa:
         self.__endereco = endereco
 
     def mostrar_endereco(self):
-        print(f"Endereço de {self.nome}: {self.__endereco}")
+        print(f"Endereço de {self.nome}: {self.endereco}")
 
     def alterar_endereco(self, novo_endereco):
         self.endereco = novo_endereco
-        print(f"Endereço de {self.nome} alterado para: {self.__endereco}")
+        print(f"Endereço de {self.nome} alterado para: {self.endereco}")
 
 
 
