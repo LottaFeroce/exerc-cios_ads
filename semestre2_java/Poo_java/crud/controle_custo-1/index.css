@@ -1,0 +1,49 @@
+
+    body{
+        background-color: rgba(45, 211, 111, 0.74) ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    form{
+        width: 300px;
+    }
+
+    input, button{
+        padding: 10px;
+        margin-bottom: 10px;
+        width: -webkit-fill-available;
+    }
+    input{
+        border: none;
+    }
+    button{
+        cursor: pointer;
+    }
+    button:active{
+        opacity: 0.5;
+        background-color: rgba(0, 128, 0, 0.5);
+    }
+    button:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+    }
+    .clear{
+        background-color: transparent;
+        border: none;
+        color: white;
+    }
+    .solid{
+        background-color: white;
+        border: none;
+        color: green;
+        border-radius: 5px;
+    }
+    .outline{
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        border-radius: 5px;
+    }
