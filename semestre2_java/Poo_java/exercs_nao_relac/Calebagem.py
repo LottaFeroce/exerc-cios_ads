@@ -1,4 +1,4 @@
-class Pessoa:   #1
+'''class Pessoa:   #1
     def __init__(self, nome, idade, endereco):
         self.nome = nome
         self.idade = idade
@@ -35,7 +35,7 @@ class Aluno:    #2
 
 a1 = Aluno("Kleb", 2023001, "Engenheiro do havai")
 a1.mostrar_curso()
-a1.alterar_curso("Programação Agil")
+a1.alterar_curso("Programação Agil")'''
 
 '''3-Crie uma classe representando os alunos de um determinado curso. A classe deve
 conter os atributos matr´ıcula do aluno, nome, nota da primeira prova, nota da segunda
@@ -45,64 +45,84 @@ prova e nota da terceira prova. Crie metodos para acessar o nome e a m ´ edia d
 (c) Encontre o aluno com menor media geral ´
 (d) Para cada aluno diga se ele foi aprovado ou reprovado, considerando o valor 6 para
 aprovac¸ao'''
-class Aluno_representado:
-    def __init__(self, matricula, nome, nota_p1, nota_p2, nota_p3):
+'''class Aluno:
+    def __init__(self, matricula, nome, nota1, nota2, nota3):
         self.matricula = matricula
         self.nome = nome
-        self.nota_p1 = nota_p1
-        self.nota_p2 = nota_p2
-        self.nota_p3 = nota_p3
-
-    def inserir_dados(self, nova_matricula, novo_nome, nova_nota_p1, nova_nota_p2, nova_nota_p3):
-        self.matricula = nova_matricula
-        self.nome = novo_nome
-        self.nota_p1 = nova_nota_p1
-        self.nota_p2 = nova_nota_p2
-        self.nota_p3 = nova_nota_p3
+        self.nota1 = nota1
+        self.nota2 = nota2
+        self.nota3 = nota3
 
     def media(self):
-        """Calcula a média das 3 provas."""
-        return (self.nota_p1 + self.nota_p2 + self.nota_p3) / 3
+        return (self.nota1 + self.nota2 + self.nota3) / 3
 
-    def situacao(self):
-        """Retorna a situação do aluno (aprovado ou reprovado)."""
-        return "Aprovado" if self.media() >= 6 else "Reprovado"
+    def get_nome(self):
+        return self.nome
+
+    def aprovado(self):
+        return self.media() >= 6
+
+    def __mediana__(self, outro):  
+        return self.media() < outro.media()
+
+alunos = []
+for aluno_cont in range(5):
+    print(f"\n Aluno {aluno_cont+1} ")
+    matricula = input("Matrícula: ")
+    nome = input("Nome: ")
+    nota1 = float(input("Nota 1: "))
+    nota2 = float(input("Nota 2: "))
+    nota3 = float(input("Nota 3: "))
+    alunos.append(Aluno(matricula, nome, nota1, nota2, nota3))
+
+maior = max(alunos)  
+menor = min(alunos)
+
+print(f"\nMaior média: {maior.get_nome()} ({maior.media():.2f})")
+print(f"Menor média: {menor.get_nome()} ({menor.media():.2f})")'''
 
 
-# Função para criar e armazenar os dados de 5 alunos
-def cadastrar_alunos():
-    alunos = []
-    for i in range(5):
-        matricula = input(f"Digite a matrícula do aluno {i + 1}: ")
-        nome = input(f"Digite o nome do aluno {i + 1}: ")
-        nota_p1 = float(input(f"Digite a nota da primeira prova do aluno {i + 1}: "))
-        nota_p2 = float(input(f"Digite a nota da segunda prova do aluno {i + 1}: "))
-        nota_p3 = float(input(f"Digite a nota da terceira prova do aluno {i + 1}: "))
-        
-        aluno = Aluno_representado(matricula, nome, nota_p1, nota_p2, nota_p3)
-        alunos.append(aluno)
-    return alunos
 
-def aluno_maior_media(alunos):
-    return max(alunos, key=lambda aluno: aluno.media())
+"""#5-Crie uma classe para representar um horario (hora, minuto e segundo). Implemente os ´
+metodos para fazer as operac¸ ´ oes de incremento (de segundos) no hor ˜ ario e diferenc¸a ´
+entre dois horarios."""
 
-def aluno_menor_media(alunos):
-    return min(alunos, key=lambda aluno: aluno.media())
+class Horario:
+    def __init__(self, hora=0, minuto=0, segundo=0):
+        self.segundos_totais = (hora * 3600 + minuto * 60 + segundo) % 86400
 
-def exibir_situacao_alunos(alunos):
-    for aluno in alunos:
-        print(f"{aluno.nome}: {aluno.situacao()} (Média: {aluno.media():.2f})")
+    def __str__(self):
+        horas, resto = divmod(self.segundos_totais, 3600)
+        minutos, segundos = divmod(resto, 60)
+        return f"{horas:02d}:{minutos:02d}:{segundos:02d}"
 
-def main():
-    alunos = cadastrar_alunos()
-    
-    maior_media = aluno_maior_media(alunos)
-    menor_media = aluno_menor_media(alunos)
-    
-    print(f"\nAluno com maior média: {maior_media.nome} - Média: {maior_media.media():.2f}")
-    print(f"Aluno com menor média: {menor_media.nome} - Média: {menor_media.media():.2f}")
-    
-    exibir_situacao_alunos(alunos)
+    def incrementar(self, segundos):
+        self.segundos_totais = (self.segundos_totais + segundos) % 86400
 
-if __name__ == "__main__":
-    main()
+    def diferenca(self, outro):
+        diff = abs(self.segundos_totais - outro.segundos_totais)
+        return Horario(0, 0, diff)
+
+    @classmethod
+    def from_input(cls):
+        hora = int(input("Hora: "))
+        minuto = int(input("Minuto: "))
+        segundo = int(input("Segundo: "))
+        return cls(hora, minuto, segundo)
+
+
+
+print("Digite o primeiro horário:")
+horario_1 = Horario.from_input()
+
+print("\nDigite o segundo horário:")
+horario_2 = Horario.from_input()
+
+print(f"\nHorário 1: {horario_1}")
+print(f"Horário 2: {horario_2}")
+
+print(f"Diferença: {horario_1.diferenca(horario_2)}")
+
+seg = int(input("\nQuantos segundos deseja adicionar ao primeiro horário? "))
+horario_1.incrementar(seg)
+print(f"Novo horário 1 após incremento: {horario_1}")
