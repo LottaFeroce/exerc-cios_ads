@@ -110,50 +110,33 @@ print("Subtração:", carga_1 - carga_2)
 print("Produto:", carga_1 * carga_2)'''
 
 
-"""#5-Crie uma classe para representar um horario (hora, minuto e segundo). Implemente os ´
+'''#5-Crie uma classe para representar um horario (hora, minuto e segundo). Implemente os ´
 metodos para fazer as operac¸ ´ oes de incremento (de segundos) no hor ˜ ario e diferenc¸a ´
 entre dois horarios.
 
 class Horario:
     def __init__(self, hora=0, minuto=0, segundo=0):
-        self.segundos_totais = (hora * 3600 + minuto * 60 + segundo) % 86400
-
+        self.tempo = (hora * 3600 + minuto * 60 + segundo) % 86400
     def __str__(self):
-        horas, resto = divmod(self.segundos_totais, 3600)
-        minutos, segundos = divmod(resto, 60)
-        return f"{horas:02d}:{minutos:02d}:{segundos:02d}"
-
-    def incrementar(self, segundos):
-        self.segundos_totais = (self.segundos_totais + segundos) % 86400
-
-    def diferenca(self, outro):
-        diff = abs(self.segundos_totais - outro.segundos_totais)
-        return Horario(0, 0, diff)
-
-    @classmethod
-    def from_input(cls):
-        hora = int(input("Hora: "))
-        minuto = int(input("Minuto: "))
-        segundo = int(input("Segundo: "))
-        return cls(hora, minuto, segundo)
+        horas_completas, restos_seg = divmod(self.tempo, 3600)
+        minutos_rest, segundos_rest = divmod(restos_seg, 60)
+        return f"{horas_completas:02d}:{minutos_rest:02d}:{segundos_rest:02d}"
+    def inc(self, segundos):
+        self.tempo = (self.tempo + segundos) % 86400
+    def diff(self, outro):
+        return Horario(0, 0, abs(self.tempo - outro.tempo))
 
 
+horario_1 = Horario(*map(int, input("Hora, minuto e segundo 1 (separados por espaço): ").split()))
+horario_2 = Horario(*map(int, input("Hora, minuto e segundo 2 (separados por espaço): ").split()))
 
-print("Digite o primeiro horário:")
-horario_1 = Horario.from_input()
+print("Diferença:", horario_1.diff(horario_2))
 
-print("\nDigite o segundo horário:")
-horario_2 = Horario.from_input()
+horario_1.inc(int(input("Segundos para adicionar: ")))
+print("Novo horário:", horario_1)
+'''
 
-print(f"\nHorário 1: {horario_1}")
-print(f"Horário 2: {horario_2}")
-
-print(f"Diferença: {horario_1.diferenca(horario_2)}")
-
-seg = int(input("\nQuantos segundos deseja adicionar ao primeiro horário? "))
-horario_1.incrementar(seg)
-print(f"Novo horário 1 após incremento: {horario_1}")"""
-
+'''
 #6
 class Vetor:
     def __init__(self, x, y, z):
@@ -243,11 +226,11 @@ class Conta_corrente:
     def mostrar_conta(self):
         print(f"Conta: {self.numero} | Nome: {self.nome} | Saldo: R${self.saldo:.2f}")
 
-c1 = Conta_corrente(1234, "Celéb", 500)
-c1.mostrar_conta()
-c1.deposito(200)
-c1.saque(100)
-c1.mostrar_conta()
+carro_1 = Conta_corrente(1234, "Celéb", 500)
+carro_1.mostrar_conta()
+carro_1.deposito(200)
+carro_1.saque(100)
+carro_1.mostrar_conta()
 
 #9
 class Racional:
@@ -283,3 +266,4 @@ print("Produto:", Resultado_1.produto(Resultado_2))
 print("Quociente:", Resultado_1.quociente(Resultado_2))
 print("Inverter sinal de Resultado_1:", Resultado_1.inverter_sinal())
 
+'''
