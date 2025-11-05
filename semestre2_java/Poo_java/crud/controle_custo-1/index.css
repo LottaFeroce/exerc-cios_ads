@@ -34,6 +34,7 @@
         background-color: transparent;
         border: none;
         color: white;
+        text-decoration-line: underline;
     }
     .solid{
         background-color: white;
