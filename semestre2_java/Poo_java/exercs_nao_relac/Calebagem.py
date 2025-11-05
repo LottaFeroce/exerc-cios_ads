@@ -34,7 +34,7 @@ class Aluno:    #2
 
 
 
-a1 = Aluno("Kleb", 2023001, "Engenheiro do havai")
+a1 = Aluno("Kleb", 2023001, "aeronautica da boeing")
 a1.mostrar_curso()
 a1.alterar_curso("Programação Agil")'''
 
