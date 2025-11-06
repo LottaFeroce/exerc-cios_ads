@@ -63,12 +63,12 @@ aprovac¸ao'''
     def aprovado(self):
         return self.media() >= 6
 
-    def __mediana__(self, outro):  
+    def __lt__(self, outro): 
         return self.media() < outro.media()
 
 alunos = []
 for aluno_cont in range(5):
-    print(f"\n Aluno {aluno_cont+1} ")
+    print(f"\nAluno {aluno_cont + 1}")
     matricula = input("Matrícula: ")
     nome = input("Nome: ")
     nota1 = float(input("Nota 1: "))
@@ -76,11 +76,16 @@ for aluno_cont in range(5):
     nota3 = float(input("Nota 3: "))
     alunos.append(Aluno(matricula, nome, nota1, nota2, nota3))
 
-maior = max(alunos)  
+maior = max(alunos)
 menor = min(alunos)
 
 print(f"\nMaior média: {maior.get_nome()} ({maior.media():.2f})")
-print(f"Menor média: {menor.get_nome()} ({menor.media():.2f})")'''
+print(f"Menor média: {menor.get_nome()} ({menor.media():.2f})")
+
+print("\nSituação dos alunos:")
+for aluno in alunos:
+    situacao = "Aprovado" if aluno.aprovado() else "Reprovado"
+    print(f"{aluno.get_nome()} - Média: {aluno.media():.2f} - {situacao}")'''
 
 
 '''#4
