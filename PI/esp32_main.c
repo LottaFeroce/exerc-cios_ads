@@ -9,7 +9,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 #define WIFI_SSID     "NEVADA"
 #define WIFI_PASS     "projetoqw"
 #define IO_USERNAME   "Projeto_Dengue"
-#define IO_KEY        "aio_GQvf90ifTST2bNP2GEbsAYpdEyLh"
+#define IO_KEY        ""
 
 #define FEED_TIMESTAMP "agente_saude"
 #define FEED_CONTADOR  "contador_focos"
