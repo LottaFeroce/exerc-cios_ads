@@ -2,18 +2,22 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import geopandas as gpd
+import os
 
-# === CONFIGURAÇÕES ===
 plt.style.use("seaborn-v0_8-whitegrid")
-
-# Caminho do dataset
+sns.set_palette("viridis")
 arquivo = r"C:\Users\User\Documents\GitHub\exerc-cios_ads\PI\DENGBR25.csv"
-df = pd.read_csv(arquivo, sep=",", encoding="utf-8", low_memory=False)
 
-# === PADRONIZAÇÃO DAS COLUNAS ===
+ext = os.path.splitext(arquivo)[1].lower()
+if ext == ".csv":
+    df = pd.read_csv(arquivo, sep=",", encoding="utf-8", low_memory=False)
+elif ext in [".xls", ".xlsx"]:
+    df = pd.read_excel(arquivo)
+else:
+    raise ValueError("Formato de arquivo não suportado. Use .csv ou .xlsx")
+
 df.columns = df.columns.str.strip().str.upper()
 
-# === MAPA DE CÓDIGOS IBGE → UF ===
 mapa_uf = {
     12: "AC", 27: "AL", 13: "AM", 16: "AP", 29: "BA", 23: "CE",
     53: "DF", 32: "ES", 52: "GO", 21: "MA", 31: "MG", 50: "MS",
@@ -21,35 +25,39 @@ mapa_uf = {
     33: "RJ", 24: "RN", 43: "RS", 11: "RO", 14: "RR", 42: "SC",
     28: "SE", 35: "SP", 17: "TO"
 }
-if "SG_UF" in df.columns:
-    df["SG_UF"] = df["SG_UF"].replace(mapa_uf)
 
-# === CONVERSÃO DE DATAS ===
+if "SG_UF" in df.columns:
+    if pd.api.types.is_numeric_dtype(df["SG_UF"]):
+        df["UF"] = df["SG_UF"].map(mapa_uf)
+    else:
+        df["UF"] = df["SG_UF"].str.upper().str.strip()
+else:
+    df["UF"] = None
+
 for col in ["DT_NOTIFIC", "DT_SIN_PRI"]:
     if col in df.columns:
         df[col] = pd.to_datetime(df[col], errors="coerce")
 
-df = df.dropna(subset=["DT_NOTIFIC"])
-df["MES_NOTIFIC"] = df["DT_NOTIFIC"].dt.month
-df["ANO_NOTIFIC"] = df["DT_NOTIFIC"].dt.year
+if "DT_NOTIFIC" in df.columns:
+    df["MES_NOTIFIC"] = df["DT_NOTIFIC"].dt.month
+    df["ANO_NOTIFIC"] = df["DT_NOTIFIC"].dt.year
 
-# === FAIXA ETÁRIA ===
-if "NU_IDADE_N" in df.columns:
-    df = df[df["NU_IDADE_N"].between(0, 120)]
-    bins = [0, 9, 19, 29, 39, 49, 59, 69, 79, 120]
-    labels = ["0–9", "10–19", "20–29", "30–39", "40–49", "50–59", "60–69", "70–79", "80+"]
-    df["FAIXA_ETARIA"] = pd.cut(df["NU_IDADE_N"], bins=bins, labels=labels, right=False)
+df = df.dropna(subset=["DT_NOTIFIC", "UF"])
+df = df[df["UF"].isin(mapa_uf.values())]
 
-# === FUNÇÕES DE VISUALIZAÇÃO ===
+print(f" Registros válidos: {len(df):,}")
+print(f" Estados distintos: {df['UF'].nunique()}")
 
 def grafico_top10_estados():
-    casos_uf = df["SG_UF"].value_counts().sort_values(ascending=False)
+    casos_uf = df["UF"].value_counts().sort_values(ascending=False)
     top10 = casos_uf.head(10)
     plt.figure(figsize=(12, 6))
-    sns.barplot(x=top10.index, y=top10.values, palette="viridis")
+    sns.barplot(x=top10.index, y=top10.values)
     plt.title("Top 10 Estados com Mais Casos de Dengue (2025)")
     plt.xlabel("Estado (UF)")
     plt.ylabel("Número de Casos")
+    for i, v in enumerate(top10.values):
+        plt.text(i, v + (v * 0.01), f"{v:,}", ha="center", fontsize=8)
     plt.tight_layout()
     plt.show()
 
@@ -64,12 +72,12 @@ def grafico_mensal():
     plt.show()
 
 def grafico_top5_estados_mensal():
-    casos_uf = df["SG_UF"].value_counts().sort_values(ascending=False)
-    top5_ufs = casos_uf.head(5).index
-    casos_mensais = df.groupby(["SG_UF", "MES_NOTIFIC"]).size().reset_index(name="CASOS")
-    pivot = casos_mensais.pivot(index="MES_NOTIFIC", columns="SG_UF", values="CASOS")
+    casos_uf = df["UF"].value_counts().sort_values(ascending=False)
+    top5 = casos_uf.head(5).index
+    casos_mensais = df.groupby(["UF", "MES_NOTIFIC"]).size().reset_index(name="CASOS")
+    pivot = casos_mensais.pivot(index="MES_NOTIFIC", columns="UF", values="CASOS")
     plt.figure(figsize=(12, 6))
-    pivot[top5_ufs].plot(ax=plt.gca(), marker="o")
+    pivot[top5].plot(ax=plt.gca(), marker="o")
     plt.title("Evolução Mensal dos Casos (Top 5 Estados)")
     plt.xlabel("Mês")
     plt.ylabel("Número de Casos")
@@ -92,22 +100,26 @@ def grafico_sexo():
         plt.show()
 
 def grafico_faixa_etaria():
-    faixa = df["FAIXA_ETARIA"].value_counts().sort_index()
-    plt.figure(figsize=(12, 6))
-    sns.barplot(x=faixa.index, y=faixa.values, color="#FF8C00")
-    plt.title("Distribuição de Casos por Faixa Etária")
-    plt.xlabel("Faixa Etária (anos)")
-    plt.ylabel("Número de Casos")
-    plt.tight_layout()
-    plt.show()
+    if "NU_IDADE_N" in df.columns:
+        df_valid = df[df["NU_IDADE_N"].between(0, 120)].copy()
+        bins = [0, 9, 19, 29, 39, 49, 59, 69, 79, 120]
+        labels = ["0–9", "10–19", "20–29", "30–39", "40–49", "50–59", "60–69", "70–79", "80+"]
+        df_valid["FAIXA_ETARIA"] = pd.cut(df_valid["NU_IDADE_N"], bins=bins, labels=labels, right=False)
+        faixa = df_valid["FAIXA_ETARIA"].value_counts().sort_index()
+        plt.figure(figsize=(12, 6))
+        sns.barplot(x=faixa.index, y=faixa.values, color="#FF8C00")
+        plt.title("Distribuição de Casos por Faixa Etária")
+        plt.xlabel("Faixa Etária (anos)")
+        plt.ylabel("Número de Casos")
+        plt.tight_layout()
+        plt.show()
 
 def grafico_mapa_brasil():
-    print("⏳ Gerando mapa de calor do Brasil...")
+    print(" Gerando mapa de calor do Brasil...")
     try:
         estados = gpd.read_file("https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson")
-        casos_uf = df["SG_UF"].value_counts().reset_index()
+        casos_uf = df["UF"].value_counts().reset_index()
         casos_uf.columns = ["sigla", "casos"]
-
         mapa = estados.merge(casos_uf, left_on="sigla", right_on="sigla", how="left")
         plt.figure(figsize=(10, 8))
         mapa.plot(column="casos", cmap="Reds", legend=True, edgecolor="black")
@@ -115,20 +127,8 @@ def grafico_mapa_brasil():
         plt.axis("off")
         plt.show()
     except Exception as e:
-        print(f"⚠️ Erro ao gerar mapa: {e}")
+        print(f" Erro ao gerar mapa: {e}")
 
-def grafico_media_idade_por_uf():
-    if "NU_IDADE_N" in df.columns:
-        media = df.groupby("SG_UF")["NU_IDADE_N"].mean().sort_values(ascending=False)
-        plt.figure(figsize=(12, 6))
-        sns.barplot(x=media.index, y=media.values, palette="crest")
-        plt.title("Média de Idade dos Casos por Estado")
-        plt.xlabel("UF")
-        plt.ylabel("Idade Média")
-        plt.tight_layout()
-        plt.show()
-
-# === MENU INTERATIVO ===
 def menu():
     opcoes = {
         "1": ("Top 10 Estados", grafico_top10_estados),
@@ -136,13 +136,12 @@ def menu():
         "3": ("Evolução Mensal (Top 5 UF)", grafico_top5_estados_mensal),
         "4": ("Casos por Sexo", grafico_sexo),
         "5": ("Casos por Faixa Etária", grafico_faixa_etaria),
-        "6": ("Média de Idade por Estado", grafico_media_idade_por_uf),
-        "7": ("Mapa de Calor do Brasil", grafico_mapa_brasil),
+        "6": ("Mapa de Calor do Brasil", grafico_mapa_brasil),
         "0": ("Sair", None)
     }
 
     while True:
-        print("\n📊 === MENU DE ANÁLISES ===")
+        print("\n === MENU DE ANÁLISES ===")
         for k, (desc, _) in opcoes.items():
             print(f"[{k}] {desc}")
 
@@ -152,12 +151,11 @@ def menu():
             print("Saindo da visualização.")
             break
         elif escolha in opcoes:
-            print(f"\n🔹 Exibindo: {opcoes[escolha][0]}")
+            print(f"\n Exibindo: {opcoes[escolha][0]}")
             plt.close('all')
             opcoes[escolha][1]()
         else:
             print("Opção inválida, tente novamente.")
 
-# === EXECUÇÃO ===
 if __name__ == "__main__":
     menu()
