@@ -292,7 +292,7 @@ def grafico_sexo():
         plt.pie(
             casos_sexo, labels=casos_sexo.index,
             autopct="%1.1f%%", startangle=90,
-            colors=["#6495ED", "#FF69B4", "#D3D3D3"]
+            colors=["#FF69B4", "#6495ED", "#D3D3D3"]
         )
         plt.title("Distribuição de Casos por Sexo Biológico")
         plt.tight_layout()
