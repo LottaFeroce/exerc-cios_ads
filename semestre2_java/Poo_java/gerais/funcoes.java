@@ -1,4 +1,4 @@
-package exercs_nao_relac;
+package gerais;
 public class funcoes {
     public static void main(String[] args) {
         clear();

@@ -1,4 +1,4 @@
-package exercs_nao_relac;
+package gerais;
 import java.util.Scanner;
 public class matriz_dnv {
         public static void main(String[] args) {

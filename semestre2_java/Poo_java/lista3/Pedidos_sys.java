@@ -1,4 +1,4 @@
-import java.util.*;
+/* import java.util.*;
 public class Pedidos_sys {
     public static void main(String[] args) {
         }
@@ -126,3 +126,4 @@ class Pagamento {
         System.out.println("Recibo emitido para o pagamento de R$ " + Valor_pagamento);
     }
 }
+*/
