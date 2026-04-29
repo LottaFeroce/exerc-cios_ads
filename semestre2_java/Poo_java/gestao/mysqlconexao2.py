@@ -38,4 +38,12 @@ def put_aluno():
     conexao.commit()
     print("Aluno atualizado com sucesso!")
 
-put_aluno()
+def delete_aluno():
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    cursor.execute("DELETE FROM alunos WHERE ID_aluno=%s",int(input("ID do aluno que vai ser deletado: ")))
+    cursor.close()
+    conexao.close()
+
+delete_aluno()
