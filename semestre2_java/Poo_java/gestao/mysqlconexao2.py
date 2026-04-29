@@ -42,7 +42,10 @@ def delete_aluno():
     conexao = conectar()
     cursor = conexao.cursor()
 
-    cursor.execute("DELETE FROM alunos WHERE ID_aluno=%s",int(input("ID do aluno que vai ser deletado: ")))
+    cursor.execute("DELETE FROM alunos WHERE ID_aluno=%s",(int(input("ID do aluno que vai ser deletado: ")),))
+    conexao.commit()
+    
+    print("Aluno se foi")
     cursor.close()
     conexao.close()
 
