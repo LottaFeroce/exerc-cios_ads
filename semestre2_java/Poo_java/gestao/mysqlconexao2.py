@@ -2,6 +2,9 @@ import mysql.connector
 from db import conectar
 from flask import Flask, request, jsonify
 
+app = Flask(__name__)
+
+@app.route("/alunos", methods = ["GET"])
 def get_alunos():
     conexao = conectar()
     cursor = conexao.cursor()
