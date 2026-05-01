@@ -10,12 +10,23 @@ def get_alunos():
     cursor = conexao.cursor()
     cursor.execute("SELECT * FROM alunos")
     dados = cursor.fetchall()
+    alunos = []
     for aluno in dados:
-        print(f"ID: {aluno[0]} | Nome: {aluno[1]} | Idade: {aluno[2]}")
+        alunos.append({
+            "ID_alunos": aluno[0],
+            "nome": aluno[1],
+            "idade": aluno[2],
+
+        })
+    '''for aluno in dados:
+        print(f"ID: {aluno[0]} | Nome: {aluno[1]} | Idade: {aluno[2]}")'''
     
     cursor.close()
     conexao.close()
 
+    return jsonify(alunos)
+ 
+'''@app.route("/alunos", methods = ["POST"])'''
 def post_aluno():
     conexao = conectar()
     cursor = conexao.cursor()
@@ -46,4 +57,6 @@ def delete_aluno():
     cursor.close()
     conexao.close()
 
-delete_aluno()
+
+if __name__ == "__main__":
+    app.run(debug=True)
