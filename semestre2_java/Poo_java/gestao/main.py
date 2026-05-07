@@ -44,7 +44,7 @@ def post_aluno():
     cursor.close()
     conexao.close()
 
-    return jsonify({"mensagem": "Aluno adicionado com sucesso!"})
+    return jsonify({"mensagem": "Aluno adicionado com sucesso"})
 
 
 @app.route("/alunos/<int:ID_aluno>", methods=["PUT"])
@@ -66,7 +66,7 @@ def put_aluno(ID_aluno):
     cursor.close()
     conexao.close()
 
-    return jsonify({"mensagem": "Aluno atualizado com sucesso!"})
+    return jsonify({"mensagem": "Aluno atualizado com sucesso"})
 
 
 @app.route("/alunos/<int:ID_aluno>", methods=["DELETE"])
@@ -84,7 +84,7 @@ def delete_aluno(ID_aluno):
     cursor.close()
     conexao.close()
 
-    return jsonify({"mensagem": "Aluno removido com sucesso!"})
+    return jsonify({"mensagem": "Aluno se foi!"})
 
 
 if __name__ == "__main__":
