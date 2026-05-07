@@ -59,12 +59,7 @@ def post_aluno():
     conexao.close()
 
     return jsonify({"Mensagem": "Aluno adicionado com sucesso!"})
-curl -X POST http://localhost:5000/alunos \
--H "Content-Type: application/json" \
--d '{
-    "nome": "João",
-    "idade": 20
-}'
+
     
 @app.route("/alunos", methods = ["DELETE"])
 def delete_aluno(ID_aluno):
