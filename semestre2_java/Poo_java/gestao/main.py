@@ -26,36 +26,58 @@ def get_alunos():
 
     return jsonify(alunos)
  
-'''@app.route("/alunos", methods = ["POST"])'''
+@app.route("/alunos/<int:ID_aluno>", methods = ["PUT"])
+def put_aluno(ID_aluno):
+    dados=request.json
+    nome=dados["nome"]
+    idade=dados["idade"]
+
+    conexao=conectar()
+    cursor=conexao.cursor()
+
+    sql="UPDATE alunos SET nome=%s, idade=%s WHERE ID_aluno=%s"
+    cursor.execute(sql, (nome, idade, ID_aluno))
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+    return jsonify({"Mensagem": "Aluno atualizado"})
+
+@app.route("/alunos", methods=["POST"])
 def post_aluno():
+    dados = request.json
+    nome = dados["nome"]
+    idade = dados["idade"]
+
     conexao = conectar()
     cursor = conexao.cursor()
 
-    cursor.execute("INSERT INTO alunos(nome, idade) VALUES (%s, %s)", (input("Digite o nome do aluno: "),input("Digite a idade do aluno: ")))
-    conexao.commit()
-    print("Aluno adicionado com sucesso!")
+    sql = "INSERT INTO alunos(nome, idade) VALUES (%s, %s)"
+    cursor.execute(sql, (nome, idade))
 
+    conexao.commit()
     cursor.close()
     conexao.close()
 
-def put_aluno():
-    conexao = conectar()
-    cursor = conexao.cursor()
-
-    cursor.execute("UPDATE alunos SET nome=%s, idade=%s  WHERE ID_aluno=%s", (input("Altere o nome do aluno: "),int(input("Altere a idade do aluno: ")),int(input("ID do aluno: "))))
-    conexao.commit()
-    print("Aluno atualizado com sucesso!")
-
-def delete_aluno():
-    conexao = conectar()
-    cursor = conexao.cursor()
-
-    cursor.execute("DELETE FROM alunos WHERE ID_aluno=%s",(int(input("ID do aluno que vai ser deletado: ")),))
-    conexao.commit()
+    return jsonify({"Mensagem": "Aluno adicionado com sucesso!"})
+curl -X POST http://localhost:5000/alunos \
+-H "Content-Type: application/json" \
+-d '{
+    "nome": "João",
+    "idade": 20
+}'
     
-    print("Aluno se foi")
+@app.route("/alunos", methods = ["DELETE"])
+def delete_aluno(ID_aluno):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    sql="DELETE FROM alunos WHERE ID_aluno=%s"
+    cursor.execute(sql, (ID_aluno))
+    conexao.commit()
     cursor.close()
     conexao.close()
+    return jsonify({"Mensagem": "Aluno se foi"})
+
 
 
 if __name__ == "__main__":
