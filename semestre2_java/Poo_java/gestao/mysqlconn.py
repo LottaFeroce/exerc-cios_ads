@@ -11,9 +11,9 @@ if conexao.is_connected():
 
 #conexao.cursor().execute()
 cursor = conexao.cursor()
-cursor.execute("CREATE DATABASE IF NOT EXISTS aula_connect")
+cursor.execute("CREATE DATABASE IF NOT EXISTS sistema_alunos")
 
-conexao.database = "aula_connect"
+conexao.database = "sistema_alunos"
 
 '''cursor.execute("Show databases")
 show databases
@@ -34,7 +34,7 @@ cursor.execute(sql, values)
 conexao.commit()
 
 #sql_update = "UPDATE alunos set idade =%s where nome = %s" 
-sql_update = "UPDATE `aula_connect`.`alunos` SET `nome` = 'cleb' WHERE (`ID_aluno` = '1');"
+sql_update = "UPDATE `sistema_alunos`.`alunos` SET `nome` = 'cleb' WHERE (`ID_aluno` = '1');"
 cursor.execute(sql_update)
 conexao.commit()
 
@@ -48,7 +48,7 @@ valores_del = (1,)
 cursor.execute(sql_del, valores_del)
 conexao.commit()
 '''
-sql_delete = "DELETE FROM aula_connect.alunos WHERE ID_aluno IN (%s, %s)"
+sql_delete = "DELETE FROM sistema_alunos.alunos WHERE ID_aluno IN (%s, %s)"
 cursor.execute(sql_delete, (2, 3))
 conexao.commit()
 

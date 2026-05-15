@@ -1,50 +1,46 @@
 import mysql.connector
 from db import conectar
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template, redirect
 
 app = Flask(__name__)
 
-@app.route("/alunos", methods=["GET"])
-def get_alunos():
+@app.route("/")
+def home():
     conexao = conectar()
     cursor = conexao.cursor()
 
     cursor.execute("SELECT * FROM alunos")
-    dados = cursor.fetchall()
+    alunos = cursor.fetchall()
 
-    alunos = []
+   #alunos = []
 
-    for aluno in dados:
+    """for aluno in dados:
         alunos.append({
             "ID_aluno": aluno[0],
             "nome": aluno[1],
             "idade": aluno[2]
-        })
+        })"""
 
     cursor.close()
     conexao.close()
 
-    return jsonify(alunos)
+    return render_template("aula.html", alunos = alunos)
 
-@app.route("/alunos", methods=["POST"])
-def post_aluno():
-    dados = request.json
-
-    nome = dados["nome"]
-    idade = dados["idade"]
-
+@app.route("/cadastrar", methods=["POST"])
+def cadastrar():
+    nome = request.form["nome"]
+    idade = request.form["idade"]
     conexao = conectar()
     cursor = conexao.cursor()
 
-    sql = "INSERT INTO alunos (nome, idade) VALUES (%s, %s)"
-    cursor.execute(sql, (nome, idade))
+    cursor.execute("INSERT INTO alunos (nome, idade) VALUES (%s, %s)",(nome,idade))
 
     conexao.commit()
 
     cursor.close()
     conexao.close()
 
-    return jsonify({"mensagem": "Aluno adicionado com sucesso"})
+    return redirect("/")
 
 
 @app.route("/alunos/<int:ID_aluno>", methods=["PUT"])

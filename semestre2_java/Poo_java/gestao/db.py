@@ -4,6 +4,6 @@ def conectar():
     host = "localhost",
     user = "root",
     password = "",
-    database = "aula_connect"
+    database = "sistema_alunos"
     )
     return conexao
