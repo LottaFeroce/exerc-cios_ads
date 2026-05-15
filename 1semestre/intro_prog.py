@@ -1,1 +1,0 @@
-'''cálculo de uma folha de pagamento, sabendo que os descontos são d imposto de renda, que depende do salário bruto (conforme a tabela abaixo) 10% inss, 11%fgts salário bruto'''
