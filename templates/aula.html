@@ -6,43 +6,106 @@
 
     <style>
         body{
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             margin: 40px;
-            background: #f4f4f4;
+            background: linear-gradient(135deg, #0f172a, #111827);
+            color: #e5e7eb;
+        }
+
+        h1{
+            color: #67e8f9;
+            text-shadow: 0 0 10px rgba(103,232,249,0.6);
+            margin-bottom: 30px;
+        }
+
+        h2{
+            color: #22d3ee;
         }
 
         .box{
-            background: white;
+            background: rgba(17, 24, 39, 0.9);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-bottom: 20px;
+            border: 1px solid rgba(34,211,238,0.3);
+            box-shadow: 0 0 15px rgba(34,211,238,0.15);
+            backdrop-filter: blur(6px);
         }
 
         input{
             padding: 10px;
             margin: 5px;
+            border-radius: 6px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus{
+            border-color: #22d3ee;
+            box-shadow: 0 0 8px rgba(34,211,238,0.6);
         }
 
         button{
-            padding: 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #06b6d4, #3b82f6);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover{
+            transform: scale(1.03);
+            box-shadow: 0 0 12px rgba(59,130,246,0.5);
         }
 
         table{
             width: 100%;
             border-collapse: collapse;
-            background: white;
+            background: rgba(17, 24, 39, 0.95);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th{
+            background: #0f172a;
+            color: #67e8f9;
         }
 
         th, td{
-            border: 1px solid #ccc;
-            padding: 10px;
+            border: 1px solid #334155;
+            padding: 12px;
+            text-align: left;
+        }
+
+        tr:nth-child(even){
+            background: rgba(255,255,255,0.03);
+        }
+
+        tr:hover{
+            background: rgba(34,211,238,0.08);
+        }
+
+        a{
+            color: #f87171;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover{
+            text-shadow: 0 0 8px rgba(248,113,113,0.7);
         }
     </style>
 </head>
 
 <body>
 
-<h1>Sistema de Alunos com HTML</h1>
+<h1>Swagger de Alunos</h1>
 
 <div class="box">
 

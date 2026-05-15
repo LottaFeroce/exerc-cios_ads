@@ -16,7 +16,7 @@ def home():
 
     """for aluno in dados:
         alunos.append({
-            "ID_aluno": aluno[0],
+            "id": aluno[0],
             "nome": aluno[1],
             "idade": aluno[2]
         })"""
@@ -43,44 +43,43 @@ def cadastrar():
     return redirect("/")
 
 
-@app.route("/alunos/<int:ID_aluno>", methods=["PUT"])
-def put_aluno(ID_aluno):
-    dados = request.json
-
+@app.route("/atualizar", methods=["POST"])
+def atualizar():
+    dados = request.form
+    
+    id = dados["id"]
     nome = dados["nome"]
     idade = dados["idade"]
 
     conexao = conectar()
     cursor = conexao.cursor()
 
-    sql = "UPDATE alunos SET nome=%s, idade=%s WHERE ID_aluno=%s"
-
-    cursor.execute(sql, (nome, idade, ID_aluno))
+    cursor.execute("UPDATE alunos SET nome=%s, idade=%s WHERE id=%s", (nome, idade, id))
 
     conexao.commit()
 
     cursor.close()
     conexao.close()
 
-    return jsonify({"mensagem": "Aluno atualizado com sucesso"})
+    return redirect("/")
 
 
-@app.route("/alunos/<int:ID_aluno>", methods=["DELETE"])
-def delete_aluno(ID_aluno):
+@app.route("/deletar/<int:id>")
+def delete_aluno(id):
 
     conexao = conectar()
     cursor = conexao.cursor()
 
-    sql = "DELETE FROM alunos WHERE ID_aluno=%s"
+    sql = "DELETE FROM alunos WHERE id=%s"
 
-    cursor.execute(sql, (ID_aluno,))
+    cursor.execute(sql, (id,))
 
     conexao.commit()
 
     cursor.close()
     conexao.close()
 
-    return jsonify({"mensagem": "Aluno se foi!"})
+    return redirect("/")
 
 
 if __name__ == "__main__":
