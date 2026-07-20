@@ -1,0 +1,36 @@
+Test tdd
+Teste: Média de 8 e 6 deve ser 7.
+Esperado 7
+Obtido ?
+Outro teste:
+Teste: Média 7 deve retornar "Aprovado"
+Esperado
+Aprovado
+
+testes realizados
+teste1
+Entrada 8 | 6
+resultado Esperado;
+média 7 aprovado
+resultado obtido:
+Média = 7.00
+Aprovado
+Status: aprovado
+yeste2
+Entrada: 4 | 5
+resultado Esperado:
+Média 4,5
+reprovado
+resultadoo btido:
+Média = 4.50
+Reprovado
+Status: reprovado
+Test3
+Entrada: 6 | 6
+resultado es´perado:
+Média 6
+Aprovado
+resultado obtido:
+média = 6.00
+Aprovado
+Status: a´provado
