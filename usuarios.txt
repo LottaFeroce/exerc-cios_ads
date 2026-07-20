@@ -1,2 +1,0 @@
-Marie;MariPeri@gmail.com;Vodka;true
-Laurel;Yanni@gmail.com;Yaurel;false
