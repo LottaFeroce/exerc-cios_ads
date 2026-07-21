@@ -1,6 +1,6 @@
 História: Como usuário, desejo calcular a média de duas notas para saber se fui aprovado ou reprovado.
 Critérios: O sistema deve receber duas notas. | Deve calcular a média aritmética. | Se a média for maior ou igual a 6, o resultado será "Aprovado". | Caso contrário, será "Reprovado".
- Criar função de cálculo da média    | 15 minutos | Criar função que verifica aprovação | 15 minutos | Escrever testes                     | 20 minutos | Implementação                       | 20 minutos | Revisão                             | 10 minutos |
+ Criar função de cálculo da média | 15 minutos | Criar função que verifica aprovação | 15 minutos | Escrever testes | 20 minutos | Implementação | 20 minutos | Revisão | 10 minutos |
 Esforço estimado: 80 minutos
 Nesta primeira versão, o sistema apenas Lê duas notas, calcula a média e informa se o aluno foi aprovado. Não serão implementados; recuperação, várias disciplinas e cadastro de alunos.
 
