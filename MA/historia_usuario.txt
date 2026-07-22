@@ -1,0 +1,39 @@
+================================
+HISTORIA DE USUARIO
+================================
+
+Como usuario, desejo calcular a media de duas notas, para saber se fui aprovado ou reprovado.
+
+CRITERIOS DE ACEITACAO
+- O sistema deve receber duas notas.
+- Deve calcular a media aritmetica.
+- Se a media for maior ou igual a 6, o resultado sera "Aprovado".
+- Caso contrario, sera "Reprovado".
+
+ESCOPO DA SMALL RELEASE
+Nesta primeira versao, o sistema apenas le duas notas, calcula a media e informa
+se o aluno foi aprovado. Nao serao implementados: recuperacao, multiplas
+disciplinas e cadastro de alunos.
+
+================================
+PLANNING GAME - ESTIMATIVA DE ESFORCO
+================================
+
+Criar funcao de calculo da media ........ 15 min
+Criar funcao que verifica aprovacao ..... 15 min
+Escrever testes .......................... 20 min
+Implementacao ............................ 20 min
+Revisao ................................... 10 min
+------------------------------------------------
+Total estimado ............................ 80 min
+
+================================
+EQUIPE (PAIR PROGRAMMING)
+================================
+
+Luan: escreveu os testes, revisou a implementacao, implementou as funcoes e
+corrigiu os erros encontrados durante os testes.
+
+Joao: definiu a historia de usuario e os criterios de aceitacao, participou do
+Planning Game (estimativa de esforco) e atuou como par de Luan durante a
+implementacao.
