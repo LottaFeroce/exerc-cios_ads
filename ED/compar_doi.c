@@ -9,6 +9,7 @@ int main() {
     printf("A > B? %d\n", a > b);
     printf("B > A? %d\n", b > a);
     printf("A == B? %d\n", a == b);
-/*operador ternario int maior = (a>b)?a:b;*/
+/*operador ternario int maior = (a>b)?a:b;
+printf("maior valor: %d\n", maior);*/
     return 0;
 }
