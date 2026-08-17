@@ -1,8 +1,8 @@
 <?php
 
 $local = "localhost";
-$user = "root";
-$password = "";
+$user = "remoto";
+$password = "12345";
 $banco = "garage";
 
 $conn = new mysqli($local,$user,$password,$banco);
