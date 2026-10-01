@@ -4,133 +4,111 @@
 typedef struct {
     int id;
     char nome[50];
-    float totalCompras;
+    float total_compras;
 } Cliente;
 
-// Ordena alfabeticamente usando strcmp (dica do slide 25)
-void ordenarPorNome(Cliente *v, int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - 1 - i; j++) {
-            if (strcmp(v[j].nome, v[j + 1].nome) > 0) {
-                Cliente aux = v[j];
-                v[j] = v[j + 1];
-                v[j + 1] = aux;
+void ordenar_por_nome(Cliente *vetor, int n) {
+    for (int indice = 0; indice < n - 1; indice++) {
+        for (int indice_interno = 0; indice_interno < n - 1 - indice; indice_interno++) {
+            if (strcmp(vetor[indice_interno].nome, vetor[indice_interno + 1].nome) > 0) {
+                Cliente auxiliar = vetor[indice_interno];
+                vetor[indice_interno] = vetor[indice_interno + 1];
+                v[indice_interno + 1] = auxiliar;
             }
         }
     }
 }
-
-// Ordena por maior valor gasto
-void ordenarPorTotalCompras(Cliente *v, int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - 1 - i; j++) {
-            if (v[j].totalCompras < v[j + 1].totalCompras) {
-                Cliente aux = v[j];
-                v[j] = v[j + 1];
-                v[j + 1] = aux;
+void ordenar_por_total_compras(Cliente *vetor, int n) {
+    for (int indice = 0; indice < n - 1; indice++) {
+        for (int indice_interno = 0; indice_interno < n - 1 - indice; indice_interno++) {
+            if (vetor[indice_interno].total_compras < vetor[indice_interno + 1].total_compras) {
+                Cliente auxiliar = vetor[indice_interno];
+                vetor[indice_interno] = vetor[indice_interno + 1];
+                v[indice_interno + 1] = auxiliar;
             }
         }
     }
 }
-
-// Busca Binária por Nome (Exige que o vetor esteja ordenado por nome)
-int buscaBinariaPorNome(Cliente *v, int n, char *nomeBusca) {
+int busca_binaria_por_nome(Cliente *vetor, int n, char *nomeBusca) {
     int inicio = 0, fim = n - 1;
     while (inicio <= fim) {
         int meio = (inicio + fim) / 2;
-        int res = strcmp(nomeBusca, v[meio].nome);
-
-        if (res == 0) return meio; // Encontrou
+        int res = strcmp(nomeBusca, vetor[meio].nome);
+        if (res == 0) return meio; 
         if (res < 0) fim = meio - 1;
         else inicio = meio + 1;
     }
-    return -1; // Não encontrado
+    return -1; 
 }
-
-void imprimirClientes(Cliente *v, int n) {
-    printf("\n--- LISTA DE CLIENTES ---\n");
-    for (int i = 0; i < n; i++) {
+void imprimir_clientes(Cliente *vetor, int n) {
+    printf("\nLista de Clientes: \n");
+    for (int indice = 0; indice < n; indice++) {
         printf("ID: %d | Nome: %-15s | Total Compras: R$ %.2f\n", 
-               v[i].id, v[i].nome, v[i].totalCompras);
+               vetor[indice].id, vetor[indice].nome, vetor[indice].total_compras);
     }
 }
-
 int main() {
     int n;
     printf("Quantos clientes deseja cadastrar inicialmente? ");
     scanf("%d", &n);
 
-    // Alocação inicial com calloc (slide 10 e 25)
-    Cliente *v = calloc(n, sizeof(Cliente));
-    if (v == NULL) {
+    Cliente *vetor = calloc(n, sizeof(Cliente));
+    if (vetor == NULL) {
         printf("Erro ao alocar memoria.\n");
         return 1;
     }
-
-    for (int i = 0; i < n; i++) {
-        printf("\nCliente %d:\n", i + 1);
+    for (int indice = 0; indice < n; indice++) {
+        printf("\nCliente %d:\n", indice + 1);
         printf("ID: ");
-        scanf("%d", &v[i].id);
+        scanf("%d", &vetor[indice].id);
         printf("Nome: ");
-        scanf(" %[^\n]", v[i].nome);
+        scanf(" %[^\n]", vetor[indice].nome);
         printf("Total de compras: ");
-        scanf("%f", &v[i].totalCompras);
+        scanf("%f", &vetor[indice].total_compras);
     }
-
     int opcao;
     do {
-        printf("\n=== MENU CLIENTES ===\n");
+        printf("\nMenu Clientes: \n");
         printf("1. Ordenar por nome\n");
         printf("2. Ordenar por total de compras\n");
         printf("3. Buscar cliente por nome (Busca Binaria)\n");
         printf("0. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
-
         switch (opcao) {
             case 1:
-                ordenarPorNome(v, n);
+                ordenar_por_nome(vetor, n);
                 printf("\nClientes ordenados por NOME:\n");
-                imprimirClientes(v, n);
+                imprimir_clientes(vetor, n);
                 break;
-
             case 2:
-                ordenarPorTotalCompras(v, n);
+                ordenar_por_total_compras(vetor, n);
                 printf("\nClientes ordenados por TOTAL DE COMPRAS:\n");
-                imprimirClientes(v, n);
+                imprimir_clientes(vetor, n);
                 break;
-
             case 3: {
-                // Garante que o vetor esteja ordenado por nome para a busca funcionar
-                ordenarPorNome(v, n);
-                
+                ordenar_por_nome(vetor, n);          
                 char busca[50];
                 printf("Digite o nome exato para buscar: ");
                 scanf(" %[^\n]", busca);
-
-                int idx = buscaBinariaPorNome(v, n, busca);
+                int idx = busca_binaria_por_nome(vetor, n, busca);
                 if (idx != -1) {
                     printf("\n Cliente encontrado!\n");
                     printf("ID: %d | Nome: %s | Total Compras: R$ %.2f\n", 
-                           v[idx].id, v[idx].nome, v[idx].totalCompras);
+                           vetor[idx].id, vetor[idx].nome, vetor[idx].total_compras);
                 } else {
                     printf("\n Cliente nao encontrado.\n");
                 }
                 break;
             }
-
             case 0:
-                printf("\nEncerrando e liberando memoria...\n");
+                printf("\nEncerrando e liberando memoria\n");
                 break;
-
             default:
-                printf("\nOpcao invalida!\n");
+                printf("\nOpcao invalida\n");
         }
     } while (opcao != 0);
-
-    // Liberação de memória (slides 10 e 11)
-    free(v);
-    v = NULL;
-
+    free(vetor);
+    vetor = NULL;
     return 0;
 }
