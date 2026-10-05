@@ -1,12 +1,10 @@
 #include <stdlib.h>
 #include <string.h>
-
 typedef struct {
     int id;
     char nome[50];
     float total_compras;
 } Cliente;
-
 void ordenar_por_nome(Cliente *vetor, int n) {
     for (int indice = 0; indice < n - 1; indice++) {
         for (int indice_interno = 0; indice_interno < n - 1 - indice; indice_interno++) {
