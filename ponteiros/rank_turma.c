@@ -13,7 +13,7 @@ void Ordenar_por_nota(Aluno *vetor, int n) {
             if (vetor[indice_interno].nota < vetor[indice_interno + 1].nota) { 
                 Aluno auxiliar = vetor[indice_interno];
                 vetor[indice_interno] = vetor[indice_interno + 1];
-                v[indice_interno + 1] = auxiliar;
+                vetor[indice_interno + 1] = auxiliar;
             }
         }
     }
@@ -40,7 +40,7 @@ int main() {
             Aluno *temporario = realloc(vetor, nova_capacidade * sizeof(Aluno));
             if (temporario == NULL) {
                 printf("Sem memoria!\n");
-                free(v);
+                free(vetor);
                 return 1;
             }
             vetor = temporario;
